@@ -1,13 +1,13 @@
 # SOEE USER API REST
 El proyecto esta enfocado en resolver el ejercicio propuesto por SOEE, donde se deben desarrollar las tres funcionalidades siguientes:
-1. `Dar de alta a un usuario`: Consiste en la creación de nuevos usuarios.La aplicación tendrá dos opciones para el almacenamiento de los usuarios:
+1. `Alta de usuario`: Consiste en la creación de nuevos usuarios.La aplicación tendrá dos opciones para el almacenamiento de los usuarios:
     - Persistente: Los usuarios se almacenarán en una base de datos, en archivo o en cualquier otra solución de 
     persistencia que se elija.
     - Volátil: Los usuarios serán almacenados en memoria (ejemplo, sesión).
 
-2. `Autenticar un usuario`: Validará las credenciales introducidas por el usuario, mostrando errores oportunos (las credenciales no son correctas, no se ha indicado el campo de email o es incorrecto su formato y no se ha indicado el campo de contraseña). Si la validación es correcta, se mostrará el listado de usuarios.
+2. `Autenticación de usuario`: Validará las credenciales introducidas por el usuario, mostrando errores oportunos (las credenciales no son correctas, no se ha indicado el campo de email o es incorrecto su formato y no se ha indicado el campo de contraseña). Si la validación es correcta, se mostrará el listado de usuarios.
 
-3. `Listar todos los usuarios`: Se listarán los usuarios dados de alta para comprobar que todo funciona correctamente. 
+3. `Listado de usuarios`: Se listarán los usuarios dados de alta para comprobar que todo funciona correctamente. 
 
 Para dar solución al ejercicio planteado de documentó la Api Rest empleando `Open API Swagger`, y para el desarrollo se utilizaron, como lenguaje de programación `Java`, y los frameworks `Spring Boot`, `Spring Security` y `Spring JPA`. El almacenanamiento de los datos podrá realizarse persistentemente a través de `PostgreSQL` o en memoria con `H2`. Se realizaron pruebas utilizando la herramienta `Postman` y pruebas unitarias automatizadas haciendo uso de los frameworks `JUnit` y `Mockito`. Para la estructuración del proyecto se definió una `Arquitectura Hexagonal` siguiendo el enfoque `Domain Driver Design`, lo que permitió la utilización de patrones como: Repository, Adapter, Entity, Service y Factory, así como el empleo de los principios `SOLID`. Se empleó el framework `Hateoas` para el manejo de los recursos a través de hipermedia, para la optimizacion y rendimiento de las respuestas se empleó compresión `GZip` y `HTTP/2` a partir de configuraciones en el archivo `application.properties` del proyecto.
 
@@ -49,3 +49,28 @@ En ambos casos podrá configurar los puertos y datos de conexión:
         db.sql.username=postgres
         db.sql.password=postgres
         db.sql.port=5432
+
+## Restricciones y endpoints
+La solución consta de 3 endpoints fundamentales.
+
+Endpoint #1 Alta de usuario
+ - POST /soee/v1/users
+ - Ejemplo: http://127.0.0.1:8082/soee/v1/users
+  
+Endpoint #2 Autenticación de usuario
+ - POST /soee/v1/authentication
+ - Ejemplo: http://127.0.0.1:8082/soee/v1/authentication
+   
+   
+Endpoint #3 Listado de usuarios
+ - GET /soee/v1/users
+ - Ejemplo: http://127.0.0.1:8082/soee/v1/users
+
+Se desarrollaron otros endpoints que se encuentan documentados con open-api/swagger:
+- Una vez que el proyecto esté corriendo, podrá acceder a la documentación mediante el enlace:
+
+`http://localhost:8082/soee-users-api-docs`
+
+## Testing
+Se implementaron `test` para las funcionalidades principales del ejercicio.
+   
